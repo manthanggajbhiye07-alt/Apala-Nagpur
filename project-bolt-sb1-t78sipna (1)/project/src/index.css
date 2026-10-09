@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    font-family: Inter, system-ui, sans-serif;
+  }
+  body {
+    @apply bg-sand-50 text-ink-900;
+    margin: 0;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .shimmer-bg {
+    background: linear-gradient(90deg, #f0ede8 0%, #e4dfd6 40%, #f0ede8 80%);
+    background-size: 800px 100%;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.15) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.15);
+    border-radius: 9999px;
+  }
+  .scrollbar-dark::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-dark::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 9999px;
+  }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  font-family: Inter, system-ui, sans-serif;
+  background: #0e1524 !important;
+}
+.leaflet-tile {
+  filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+}
+.leaflet-control-attribution {
+  background: rgba(10,15,26,0.75) !important;
+  color: rgba(196,206,224,0.7) !important;
+  font-size: 10px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px 0 0 0 !important;
+}
+.leaflet-control-attribution a {
+  color: rgba(106,127,176,0.9) !important;
+}
+.leaflet-control-zoom a {
+  background: rgba(18,27,45,0.92) !important;
+  color: #c4cee0 !important;
+  border: 1px solid rgba(36,51,85,0.5) !important;
+  backdrop-filter: blur(8px);
+}
+.leaflet-control-zoom a:hover {
+  background: rgba(26,38,64,0.95) !important;
+  color: #fff !important;
+}
+
+/* Custom marker pin */
+.cp-marker {
+  background: transparent;
+  border: none;
+}
+.cp-marker-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  border: 2px solid rgba(255,255,255,0.9);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cp-marker-pin:hover {
+  transform: rotate(-45deg) scale(1.15);
+}
+.cp-marker-pin.active {
+  box-shadow: 0 0 0 4px rgba(20,184,144,0.35), 0 4px 12px rgba(0,0,0,0.5);
+  z-index: 1000 !important;
+}
+.cp-marker-pin svg,
+.cp-marker-pin .icon-wrap {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
